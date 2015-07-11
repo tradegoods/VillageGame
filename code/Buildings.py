@@ -1,12 +1,13 @@
-class Buildings(object):
+class Building(object):
 
 
-    def __init__(self):
-        buildingList = {"House": MoreHousing(), "Fletchery": Flethcery(), "Forge": Forge(), "Lumbermill": Lumbermill(), "Blacksmith": Blacksmith()} 
+    def __init__(self, project):
+        buildingList = {"House": self.MoreHousing, "Fletchery": self.Fletchery, "Forge": self.Forge, "Lumbermill": self.Lumbermill, "Blacksmith": self.Blacksmith} 
+        buildingList[project]()
 
     def Fletchery(self):
-        pass
-
+        self.name = "Fletchery"
+        self.cost = 5
     def Forge(self):
         pass
 
@@ -16,7 +17,6 @@ class Buildings(object):
     def Blacksmith(self):
         pass
 
-    def MoreHousing(self:
+    def MoreHousing(self):
+        self.name = "House"
         self.cost = 3
-        def complete():
-            print "You made a House!"

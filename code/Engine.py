@@ -1,10 +1,10 @@
-
+from Buildings import Building
 
 class Engine(object):
 
     def __init__(self):
         global allBuildings 
-        allBuildings = {"House": 3}
+        allBuildings = ["House"]
     def month_sequence(self):
         global completeProjects
         global currentProjects
@@ -12,20 +12,20 @@ class Engine(object):
         if len(currentProjects) == 0:
             print "You have no current projects"
         else:
-            gone = []
             for project in currentProjects:
-                currentProjects[project] -= 1    
-                if currentProjects[project] == 0:
-                    completeProjects[project] = currentProjects[project]
+                project.cost -= 1    
+                if project.cost == 0:
+                    completeProjects.append(project)
                 else:
-                    print "%s will be done in %r turns" % (project, currentProjects[project])
+                    print "%s will be done in %r turns" % (project.name, project.cost)
         print "The following projects are completed:"
         if len(completeProjects) == 0:
             print "None"
         for project in completeProjects:
-            print project
-            del currentProjects[project]
-        completeProjects = {}    
+            print project.name
+            #project.complete() need to change a lot
+            currentProjects.remove(project)
+        completeProjects = []
         print "~~~~~~~~~~"
         print "Would you like to start something else?"
         print "Available Buildings:"
@@ -38,8 +38,9 @@ class Engine(object):
                 if choice in currentProjects:
                     print "Already Doing that Scrub"
                 else:
-                    currentProjects[choice] = allBuildings[choice]
-                    print "%s will be done in %r turns" % (choice, allBuildings[choice])
+                    project = Building(choice)
+                    currentProjects.append(project)
+                    print "%s will be done in %r turns" % (project.name, project.cost)
         self.run_month()
 
     def run_month(self):
@@ -49,11 +50,10 @@ class Engine(object):
         global completeProjects
         global availableBuildings
         global currentProjects
-        
 
-        completeProjects = {}
-        currentProjects = {}
-        availableBuildings = {"House": 3}
+        completeProjects = []
+        currentProjects = []
+        availableBuildings = ["House", "Fletchery"]
         self.month_sequence()
 game = Engine()
 game.start()
