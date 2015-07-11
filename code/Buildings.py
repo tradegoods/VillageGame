@@ -1,22 +1,33 @@
 class Building(object):
 
 
-    def __init__(self, project):
-        buildingList = {"House": self.MoreHousing, "Fletchery": self.Fletchery, "Forge": self.Forge, "Lumbermill": self.Lumbermill, "Blacksmith": self.Blacksmith} 
-        buildingList[project]()
+    def __init__(self):
+        self.buildingList = {"House": self.Housing, "Fletchery": self.Fletchery, "Forge": self.Forge, "Lumbermill": self.Lumbermill, "Blacksmith": self.Blacksmith} 
 
-    def Fletchery(self):
-        self.name = "Fletchery"
-        self.cost = 5
-    def Forge(self):
+    class Fletchery(object):
+        
+        def __init__(self):
+            self.name = "Fletchery"
+            self.cost = 5
+
+        def complete(self, game):
+            game.availableBuildings.remove("Fletchery")
+            print "You finished the fletchery"
+    
+    class Forge(object):
         pass
 
-    def Lumbermill(self):
+    class Lumbermill(object):
         pass
 
-    def Blacksmith(self):
+    class Blacksmith(object):
         pass
 
-    def MoreHousing(self):
-        self.name = "House"
-        self.cost = 3
+    class Housing(object):
+        
+        def __init__(self):
+            self.name = "House"
+            self.cost = 3
+
+        def complete(self, game):
+            print "You built a house"
