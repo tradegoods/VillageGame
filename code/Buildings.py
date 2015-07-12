@@ -1,3 +1,5 @@
+from Professions import Profession
+from Professions import Ranger
 class Building(object):
 
 
@@ -12,6 +14,8 @@ class Building(object):
 
         def complete(self, game):
             game.availableBuildings.remove("Fletchery")
+            game.availableProfessions.append("Ranger")
+            Ranger(game)
             print "You finished the fletchery"
     
     class Forge(object):

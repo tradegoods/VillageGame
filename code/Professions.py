@@ -1,10 +1,10 @@
 class Profession(object):
 
-    def __init__(self):
+    def __init__(self, game):
         
-        self.professionDictionary = {"Farmer": Farmer, "Lumberjack": Lumberjack, "Builder": Builder, "Scout": Scout}
+        self.professionDictionary = {"Farmer": Farmer, "Lumberjack": Lumberjack, "Builder": Builder, "Scout": Scout, "Ranger": Ranger}
     
-
+        
     def add_units(self, game, number):
         if number > game.freePopulation:
             print "You don't have that many dudes"
@@ -16,10 +16,10 @@ class Profession(object):
 class Farmer(Profession):
         
         
-    def __init__(self):
+    def __init__(self, game):
 
         self.farmerStrength = 3
-        
+        game.professionAssigned["Farmer"] = self
         self.count = 0
 
     def update_property(self, game):
@@ -33,11 +33,13 @@ class Lumberjack(Profession):
 
 class Builder(Profession):
         
-    def __init__(self):
+    def __init__(self, game):
 
         self.builderStrength = 1
-
+        game.professionAssigned["Builder"] = self
         self.count = 0
+
+
 
     def update_property(self, game):
 
@@ -45,4 +47,32 @@ class Builder(Profession):
 
 
 class Scout(Profession):
-    pass
+    
+    def __init__(self, game):
+
+        self.scoutDamage = 1
+        self.scoutScouting = 3
+        game.professionAssigned["Scout"] = self
+        self.count = 0
+
+
+
+    def update_property(self, game):
+
+        game.scouting = self.count * self.scoutScouting
+
+
+
+class Ranger(Profession):
+    
+    def __init__(self, game):
+        
+        self.rangerDamage = 3
+        self.rangerScouting = 3
+        game.professionAssigned["Ranger"] = self
+        self.count = 0
+
+ 
+    def update_property(self, game):
+
+        game.scouting = self.count * self.rangerScouting + Scout.count * Scout.scoutScouting

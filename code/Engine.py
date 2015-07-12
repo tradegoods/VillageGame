@@ -13,7 +13,8 @@ class Engine(object):
         self.completeProjects = []
         self.availableBuildings = ["House", "Fletchery"]
         self.currentProjects = []
-        self.availableProfessions = ["Builder", "Farmer"]
+        self.availableProfessions = ["Builder", "Farmer", "Scout"]
+        self.professionAssigned = {}
 
 
     def month_sequence(self):
@@ -52,6 +53,15 @@ class Engine(object):
         self.run_month()
 
     def run_month(self):
+        
+        print("Reassign Dudes?")
+        choice = " "
+        while not "no" in choice:
+            choice = raw_input("> ").split(" ")
+            if choice[0] in self.availableProfessions:
+                number = int(choice[1])
+                self.professionAssigned[choice[0]].add_units(self, number)    
+
         self.month_sequence()
 
     def start(self):
@@ -62,7 +72,8 @@ class Engine(object):
         for professionString in self.availableProfessions:
             print "How many %ss?" % professionString
             number = int(raw_input("> "))
-            profession = Profession().professionDictionary[professionString]().add_units(self, number)
+            Profession(self).professionDictionary[professionString](self).add_units(self, number)
+    
         self.month_sequence()
 
 game = Engine()
