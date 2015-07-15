@@ -21,7 +21,7 @@ class Farmer(Profession):
         self.farmerStrength = 3
         game.professionAssigned["Farmer"] = self
         self.count = 0
-
+	self.name = "Farmer"
     def update_property(self, game):
 
         game.foodPerTurn = self.farmerStrength * self.count - game.population
@@ -38,7 +38,7 @@ class Builder(Profession):
         self.builderStrength = 1
         game.professionAssigned["Builder"] = self
         self.count = 0
-
+	self.name = "Builder"
 
 
     def update_property(self, game):
@@ -54,8 +54,7 @@ class Scout(Profession):
         self.scoutScouting = 3
         game.professionAssigned["Scout"] = self
         self.count = 0
-
-
+	self.name = "Scout"
 
     def update_property(self, game):
 
@@ -71,8 +70,8 @@ class Ranger(Profession):
         self.rangerScouting = 3
         game.professionAssigned["Ranger"] = self
         self.count = 0
-
+	self.name = "Ranger"
  
     def update_property(self, game):
 
-        game.scouting = self.count * self.rangerScouting + Scout.count * Scout.scoutScouting
+        game.scouting = self.count * self.rangerScouting + game.professionAssigned["Scout"].count * game.professionAssigned["Scout"].scoutScouting
