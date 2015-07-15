@@ -11,10 +11,10 @@ class Engine(object):
         self.completeProjects = []
         self.availableBuildings = ["House", "Fletchery"]
         self.currentProjects = []
-        self.availableProfessions = ["Builder", "Farmer", "Scout"]
+        self.availableProfessions = ["Builder", "Farmer", "Scout", "Lumberjack"]
         self.professionAssigned = {}
         self.commandDictionary = {"Stockpile": self.stockpile, "Population": self.population_status, "Available Buildings": self.available_buildings, "Assign Dudes": self.assign_dudes}
-        self.resources = {"Wood": 0, "Food": 10}
+        self.resources = {"Wood": 5, "Food": 10}
         self.foodPerTurn = -8
         self.woodPerTurn = 0
     def month_sequence(self):
@@ -93,8 +93,8 @@ class Engine(object):
         self.resources["Food"] += self.foodPerTurn
         self.resources["Wood"] += self.woodPerTurn
         for project in self.currentProjects:
-            project.cost -= self.productivity    
-            if project.cost <= 0:
+            project.productionCost -= self.productivity    
+            if project.productionCost <= 0:
                 self.completeProjects.append(project)
             for project in self.completeProjects:
                 project.complete(self)
@@ -132,9 +132,12 @@ class Engine(object):
                     print "Already Doing that Scrub"
                 else:
                     project = Building().buildingList[choice]()
-                    self.currentProjects.append(project)
-                    print "%s will be done in %r turns" % (project.name, (project.cost / self.productivity + (project.cost % self.productivity != 0)))
-        	
+                    if project.woodCost < self.resources["Wood"]:
+                        self.currentProjects.append(project)
+                        self.resources["Wood"] -= project.woodCost
+                        print "%s will be done in %r turns" % (project.name, (project.productionCost / self.productivity + (project.productionCost % self.productivity != 0)))
+        	    else:
+                        print "Not enough Wood"
 
     def assign_dudes(self):
 

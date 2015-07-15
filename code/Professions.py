@@ -28,7 +28,17 @@ class Farmer(Profession):
 
     
 class Lumberjack(Profession):
-     pass
+    
+
+    def __init__(self, game):
+
+        self.lumberjackStrength = 3
+        game.professionAssigned["Lumberjack"] = self
+        self.count = 0
+        self.name = "Lumberjack"
+    def update_property(self, game):
+
+        game.woodPerTurn = self.lumberjackStrength * self.count
 
 
 class Builder(Profession):

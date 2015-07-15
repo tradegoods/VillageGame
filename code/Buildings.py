@@ -10,7 +10,8 @@ class Building(object):
         
         def __init__(self):
             self.name = "Fletchery"
-            self.cost = 5
+            self.woodCost = 5
+            self.productionCost = 10
 
         def complete(self, game):
             game.availableBuildings.remove("Fletchery")
@@ -31,7 +32,8 @@ class Building(object):
         
         def __init__(self):
             self.name = "House"
-            self.cost = 3
+            self.woodCost = 3
+            self.productionCost = 5
 
         def complete(self, game):
             print "You built a house"
