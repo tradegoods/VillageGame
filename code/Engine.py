@@ -1,5 +1,6 @@
 from Buildings import Building
 from Professions import Profession
+from RandomEvents import RandomEvent
 class Engine(object):
         
     
@@ -68,7 +69,7 @@ class Engine(object):
     def turn_sequence(self):
 
             self.upkeep()
-            self.random_event()
+            self.explore()
 
             while True:
                 
@@ -101,9 +102,10 @@ class Engine(object):
                 self.currentProjects.remove(project)
         self.completeProjects = []
 
-    def random_event(self):
-        pass
-    
+    def explore(self):
+   
+	RandomEvent(game)	
+ 
     def stockpile(self):
         
         for resource in self.resources:
