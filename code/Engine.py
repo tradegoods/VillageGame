@@ -132,7 +132,13 @@ class Engine(object):
             if choice in self.availableBuildings:
                 if choice in self.currentProjects:
                     print "Already Doing that Scrub"
-                else:
+                
+		elif self.productivity = 0:
+			
+			print "You got no builders dawg"
+
+
+		else:
                     project = Building().buildingList[choice]()
                     if project.woodCost < self.resources["Wood"]:
                         self.currentProjects.append(project)
