@@ -1,5 +1,6 @@
 from Professions import Profession
 from Professions import Ranger
+from Professions import Swordsmen
 class Building(object):
 
 
@@ -26,7 +27,18 @@ class Building(object):
         pass
 
     class Blacksmith(object):
-        pass
+        
+	def __init__(self):
+	
+		self.name = "Blacksmith"
+		self.woodCost = 50
+		self.productionCost = 20
+
+	def complete(self, game):
+		game.availableBuildings.remove("Blacksmith")
+		game.availableProfessions.append("Swordsmen")
+		Swordsmen(game)
+		print "You built a blacksmith"
 
     class Housing(object):
         
