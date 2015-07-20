@@ -26,7 +26,7 @@ class RandomEvent(object):
 		bearAttack = 10
 		choice = ' '
 		while not ("yes" in choice or "no" in choice):
-			choice = raw_input("> ")
+			choice = raw_input("Attack: ")
 		if "yes" in choice:
 			if game.combat(bearHealth, bearAttack):
 				print "You gain 30 food"
@@ -50,7 +50,7 @@ class RandomEvent(object):
 		boarAttack = 5
 		choice = ' '
 		while not ("yes" in choice or "no" in choice):
-			choice = raw_input("> ")
+			choice = raw_input("Attack: ")
 		if "yes" in choice:
 			if game.combat(boarHealth, boarAttack):
 				print "You gain 20 food"

@@ -142,7 +142,7 @@ class Engine(object):
             print building
         choice = " "
         while choice != "done":
-            choice = raw_input("> ")
+            choice = raw_input("Build: ")
             if choice in self.availableBuildings:
                 if choice in self.currentProjects:
                     print "Already Doing that Scrub"
@@ -166,7 +166,7 @@ class Engine(object):
         print("Reassign Dudes?")
         finished = False
         while not finished:
-            choice = raw_input("> ").split(" ") 
+            choice = raw_input("Assign: ").split(" ") 
             if "done" in choice:
                 break
             
